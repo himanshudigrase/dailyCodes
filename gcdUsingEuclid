@@ -1,3 +1,5 @@
+//Following program is done using Euclid's Algo
+
 #include<iostream>
 using namespace std;
 
@@ -12,3 +14,6 @@ int main() {
 	else cout<<gcd(a,b);
 	return 0;
 }
+
+
+//to find LCM use formula GCD*LCM = a*b
