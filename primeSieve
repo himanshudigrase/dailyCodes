@@ -41,3 +41,58 @@ int main()
 
     return 0;
 }
+
+
+
+
+//This program prints prime nos between range a and b
+// this program uses constant time O(Q + N)
+//where Q is no of queries and N is complexity for primeSieve
+
+
+
+
+#include <iostream>
+using namespace std;
+
+void primeSieve(int *p){
+    //first  marking all the odd nos as prime
+    for(int j=3;j<=1000000; j +=2 ){
+        p[j] = 1;
+    }
+    
+    //Sieve
+    for(long long int i = 3; i<=1000000;i+=2){
+        //if the current nummber is not marked then it is prime
+        if(p[i] == 1){
+            //mark all the multiples of i as not prime
+            for(long long int j = i*i; j<=1000000;j+=i){
+                p[j] = 0;
+            }
+        }
+    }
+    p[2] = 1;
+    p[1] = p[0] = 0;
+}
+
+int main()
+{
+    int p[1000005] = {0};
+    primeSieve(p);
+    
+    int csum[1000005] = {0};
+    
+    for(int i = 0;i<=1000005;i++){
+        csum[i] = csum[i-1] + p[i];
+    }
+    
+    int q;
+    cin>>q;
+    while(q--){
+        int a,b;
+        cin>>a >>b;
+        cout<<csum[b]-csum[a-1]<<endl;
+    }
+
+    return 0;
+}
