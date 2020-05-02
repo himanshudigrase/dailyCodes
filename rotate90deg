@@ -1,0 +1,78 @@
+//This code basically rotates the array by 90 deg.
+//Sample Input
+//4
+//  1 2 3 4
+//  5 6 7 8
+//  9 10 11 12
+//  13 14 15 16
+
+//Sample Output
+//4 8 12 16 
+//3 7 11 15 
+//2 6 10 14 
+//1 5 9 13 
+
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+void display(int arr[][1000],int n){
+  for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++){
+			cout<<arr[i][j]<<" ";
+		}
+        cout<<endl;
+	}
+}
+
+void rotate(int arr[][1000],int n){
+   for(int i=0;i<n;i++){
+     int start_col = 0;
+     int end_col = n-1;
+     while(start_col<end_col){
+       swap(a[i][start_col],a[i][end_col]);
+       start_col++;
+       end_col--;
+     }
+	}
+  for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++){
+      if(i<j){
+        swap(arr[i][j],arr[j][i]);
+      }
+		}	
+	}
+}
+
+
+///Does the same thing as above function but reverse function is used which is inbuilt
+void rotate_stl(int arr[][1000], int N){
+ for(int i=0;i<n;i++){
+  reverse(a[i],a[i]+n);
+ }
+ 
+  for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++){
+      if(i<j){
+        swap(arr[i][j],arr[j][i]);
+      }
+		}	
+	}
+}
+
+int main() {
+	int N,temp;
+	cin>>N;
+	int arr[N][N];
+
+	for(int i=0;i<N;i++){
+		for(int j=0;j<N;j++){
+			cin>>arr[i][j];
+		}
+		cout<<endl;
+	}
+ rotate(arr,N);
+ rotate_stl(arr,N);
+ display(arr,N);
+	return 0;
+}
